@@ -1,0 +1,10 @@
+@import 'variables.scss';
+
+.contents {
+  background: $back1;
+  max-width: 960px;
+  margin: 0 auto;
+  border-radius: 8px;
+  padding: 24px 28px;
+  @include shadow2;
+}

@@ -1,0 +1,95 @@
+// color
+$back1: #f8fafc;
+$back2: #f3f4f6;
+$border1: #d1d5db;
+$border2: #e2e8f0;
+$text1: #374151;
+$text2: #9ca3af;
+$text3: #0c4a6e;
+$shadow: #374151;
+$main1: #0ea5e9;
+$main2: #38bdf8;
+$main3: #e0f2fe;
+$danger1: #ef4444;
+$danger2: #ffe4e6;
+
+// breakpoint
+$breakpoints: (
+  "pc": "screen and (min-width: 769px)",
+  "tablet": "screen and (max-width:768px)",
+);
+
+@mixin mq($breakpoint: tablet) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
+// text
+@mixin text1 {
+	font-size:2rem;
+	line-height:48px;
+	font-weight:700;
+}
+
+@mixin text2 {
+  font-size:1.75rem;
+	font-weight:700;
+	line-height:42px;
+}
+
+@mixin text3 {
+	font-size:1.25rem;
+	font-weight:700;
+	line-height:30px;
+}
+
+@mixin text4 {
+	font-size:1rem;
+	font-weight:700;
+	line-height:24px;
+}
+
+@mixin text5 {
+	font-size:1rem;
+	font-weight:400;
+	line-height:24px;
+}
+
+@mixin text6 {
+	font-size:0.875rem;
+	font-weight:700;
+	line-height:21px;
+}
+
+@mixin text7 {
+	font-size:0.875rem;
+	font-weight:400;
+	line-height:21px;
+}
+
+@mixin text8 {
+	font-size:0.75rem;
+	font-weight:700;
+	line-height:18px;
+}
+
+@mixin text9 {
+	font-size:0.75rem;
+	font-weight:400;
+	line-height:18px;
+}
+
+// shadow
+@mixin shadow1 {
+	box-shadow:0px 2px 8px $shadow;
+}
+@mixin shadow2 {
+	box-shadow:0px 2px 20px $shadow;
+}
+@mixin shadow3 {
+	box-shadow:0px 4px 10px $shadow;
+}
+@mixin shadow4 {
+	box-shadow:0px 4px 6px $shadow;
+}
