@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import { useToggle } from "react-use";
+import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import Contents from "containers/Contents";
+import Contents from "containers/Content";
 import "./style.scss";
 
 const Add = (props) => {
@@ -148,19 +148,20 @@ const Add = (props) => {
             </div>
           </div>
           <div className="item">
-            <div style={{ visibility: questionBool ? "visible" : "hidden" }}>
-              <div className="list">
-                <ul>
-                  {newBook.questions.map((element, i) => {
-                    return (
-                      <li key={element.id}>
-                        <p className="num">{i + 1}</p>
-                        <p className="content">{element.desc}</p>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
+            <div
+              className="list"
+              style={{ visibility: questionBool ? "visible" : "hidden" }}
+            >
+              <ul>
+                {newBook.questions.map((element, i) => {
+                  return (
+                    <li key={element.id}>
+                      <p className="num">{i + 1}</p>
+                      <p className="content">{element.desc}</p>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
           </div>
         </div>
