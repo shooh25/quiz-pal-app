@@ -1,10 +1,10 @@
 import React from "react";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import Header from "components/Header";
-import Result from "pages/Quiz/Result";
-import Resolve from "pages/Quiz/Resolve";
-import Contents from "containers/Contents";
+import Result from "pages/Result";
+import Resolve from "pages/Playing";
+import Content from "components/Content";
+import "./style.scss";
 
 const Quiz = () => {
   const book = useLocation().state;
@@ -13,8 +13,8 @@ const Quiz = () => {
   const [score, setScore] = useState(0); // 正答数
 
   return (
-    <Contents>
-      <div>
+    <Content>
+      <div className="quiz">
         {finish ? (
           <Result book={book} index={index} score={score} />
         ) : (
@@ -27,11 +27,13 @@ const Quiz = () => {
             setScore={setScore}
           />
         )}
-        <Link to={"/"} onClick={() => setScore(0)}>
-          戻る
-        </Link>
+        <div className="menuArea">
+          <Link to={"/"} onClick={() => setScore(0)}>
+            <button>トップへ戻る</button>
+          </Link>
+        </div>
       </div>
-    </Contents>
+    </Content>
   );
 };
 

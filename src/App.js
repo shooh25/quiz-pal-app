@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Top from "pages/Top";
 import Quiz from "pages/Quiz/Quiz";
-import Add from "pages/Add/Add";
+import Add from "pages/New";
 
 
 function App() {
