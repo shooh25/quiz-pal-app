@@ -1,38 +1,33 @@
-@import 'variables.scss';
-// reset.css by Eric Meyer https://meyerweb.com/eric/tools/css/reset/index.html/
-@import '@unocss/reset/eric-meyer.css';
+@import "variables.scss";
+@import "@unocss/reset/eric-meyer.css";
+@import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500&display=swap");
 
 *,
 *:before,
 *:after {
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html,
 body,
 #root {
-  min-height: 100vh;
   width: 100%;
-  // min-width: 1000px;
+  height: 100%;
 
-  @include mq() {
+  @include mq(tablet) {
     min-width: 100%;
   }
 }
 
 html {
-	font-size: 62.5%;
+  font-size: 62.5%;
 }
 
 body {
-	margin: 0;
-  font-family: "Helvetica Neue",
-    Arial,
-    "Hiragino Kaku Gothic ProN",
-    "Hiragino Sans",
-    Meiryo,
-    sans-serif;
+  margin: 0;
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans", Meiryo, sans-serif;
   font-style: normal;
   letter-spacing: 0.01em;
   text-decoration: none;
@@ -41,4 +36,42 @@ body {
 
 #root {
   background: $back2;
+  padding: 24px 20px;
+  overflow: scroll;
+
+  @include mq(tablet) {
+    padding: 10px;
+  }
+}
+
+.textbox {
+  background: $back1;
+  border-radius: 6px;
+  border: none;
+  outline: 1px solid $border1;
+  padding: 10px;
+  width: 100%;
+  color: $text1;
+  @include text5;
+
+  &:focus {
+    outline: none;
+    outline: 2px solid $main1;
+  }
+
+  @include mq(tablet) {
+    @include text7;
+    height: 40px;
+  }
+}
+
+a,
+p,
+h1,
+h2,
+h3,
+h4,
+span {
+  text-decoration: none;
+  color: $text1;
 }

@@ -1,0 +1,109 @@
+@import "variables.scss";
+
+.add {
+  h1 {
+    color: $main1;
+    @include text1;
+
+    @include mq(tablet) {
+      @include text3;
+    }
+  }
+
+  h2 {
+    margin-bottom: 6px;
+    @include text3;
+
+    @include mq(tablet) {
+      @include text4;
+    }
+  }
+
+  .heading {
+    border-bottom: 1px solid $border2;
+    padding-bottom: 10px;
+  }
+
+  .item {
+    padding: 16px 0;
+
+    .form {
+      background: $back2;
+      border: 1px solid $border1;
+      border-radius: 8px;
+      padding: 20px;
+
+      .formItem {
+        margin-bottom: 20px;
+
+        p {
+          margin-bottom: 10px;
+          @include text4;
+
+          @include mq(tablet) {
+            @include text6;
+          }
+
+          span {
+            @include text7;
+            color: $text2;
+            margin-left: 10px;
+          }
+        }
+
+        textarea {
+          resize: none;
+          height: 100px;
+        }
+
+        label {
+          margin-right: 10px;
+
+          span {
+            @include text5;
+          }
+        }
+      }
+
+      @include mq(tablet) {
+        padding: 12px;
+        border-radius: 6px;
+      }
+    }
+
+    .list {
+      padding: 0 16px;
+      background: $back1;
+      border: 1px solid $border2;
+      border-radius: 8px;
+
+      li {
+        align-items: flex-start;
+        padding: 10px 0;
+        display: flex;
+
+        &:not(:first-child) {
+          border-top: 1px solid $border2;
+        }
+
+        .num {
+          margin-right: 10px;
+          color: $main1;
+          @include text4;
+        }
+
+        .content {
+          @include text7;
+        }
+      }
+    }
+  }
+
+  .menuArea {
+    padding-top: 46px;
+    justify-content: flex-end;
+    display: flex;
+    width: 100%;
+    gap: 10px;
+  }
+}

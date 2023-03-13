@@ -1,0 +1,140 @@
+@import "variables.scss";
+
+.top {
+  h1 {
+    color: $main1;
+    @include text1;
+
+    @include mq(tablet) {
+      @include text3;
+    }
+  }
+
+  .heading {
+    border-bottom: 1px solid $border2;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .body {
+    padding-top: 16px;
+
+    li {
+      width: 100%;
+      height: 56px;
+      padding: 10px;
+      margin-bottom: 6px;
+      border: 1px solid $border1;
+      border-radius: 8px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      h2 {
+        @include text4;
+        
+        @include mq(tablet) {
+          @include text6;
+        }
+      }
+
+      .left {
+        display: flex;
+        align-items: center;
+
+        img {
+          height: 36px;
+          margin-right: 12px;
+        }
+      }
+
+      .right {
+        display: none;
+
+        .menuArea {
+          display: flex;
+        }
+
+        .linkButton {
+          margin-right: 6px;
+        }
+      }
+
+      &:hover {
+        background: $back2;
+        transition: 0.3s;
+        cursor: pointer;
+
+        .right {
+          display: block;
+        }
+      }
+    }
+  }
+
+  .popUpArea {
+    background: rgba(55, 65, 81, 0.3);
+    transform: translate(-50%, -50%);
+    position: fixed;
+    width: 100vw;
+    height: 100%;
+    left: 50%;
+    top: 50%;
+
+    .overlay {
+      position: relative;
+      width: 100%;
+      height: 100%;
+
+      .popUp {
+        max-width: 600px;
+        height: 195px;
+        padding: 24px;
+        background: $back1;
+        border-radius: 8px;
+        width: calc(100% - 40px);
+        
+        transform: translate(-50%, -50%);
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        @include shadow1;
+
+        .container {
+          width: 100%;
+          height: 100%;
+
+          display: flex;
+          flex-wrap: wrap;
+          flex-flow: column;
+          justify-content: space-between;
+
+          h3 {
+            @include text4;
+            margin-bottom: 2px;
+
+          }
+          
+          p {
+            color: $text2;
+            @include text7;
+          }
+
+          .bottom {
+            justify-content: flex-end;
+            display: flex;
+            gap: 10px;
+          }
+        }
+
+        @include mq(tablet) {
+          height: 150px;
+          padding: 20px;
+        }
+      }
+    }
+  }
+}
