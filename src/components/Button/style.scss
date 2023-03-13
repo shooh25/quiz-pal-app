@@ -1,0 +1,56 @@
+@import "variables.scss";
+
+.button {
+  // 共通
+  button {
+    @include shadow2;
+    color: $back1;
+    border: none;
+    cursor: pointer;
+  }
+
+  &:hover {
+    opacity: 90%;
+    transition: 0.1s;
+  }
+
+  // ノーマルサイズ
+  .normal {
+    padding: 10px 28px;
+    border-radius: 10px;
+    @include text4;
+
+    @include mq(tablet) {
+      @include text6;
+      padding: 8px 20px;
+      border-radius: 8px;
+    }
+  }
+
+  // ミニサイズ
+  .mini {
+    padding: 6px 16px;
+    border-radius: 6px;
+    @include text7;
+
+    @include mq(tablet) {
+      padding: 6px 14px;
+      border-radius: 6px;
+    }
+  }
+
+  .filledButton {
+    background: $main1;
+  }
+
+  .dangerButton {
+    background: $danger1;
+  }
+
+  .outlineButton {
+    background: $back1;
+    color: $main1;
+    outline: 2px solid $main1;
+    outline-offset: -2px;
+  }
+}

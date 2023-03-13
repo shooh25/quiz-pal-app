@@ -1,0 +1,15 @@
+@import 'variables.scss';
+
+.contents {
+  background: $back1;
+  border-radius: 8px;
+  padding: 24px 28px;
+  max-width: 960px;
+  margin: 0 auto;
+  min-height: 100%;
+  @include shadow2;
+
+  @include mq(tablet) {
+    padding: 16px;
+  }
+}
