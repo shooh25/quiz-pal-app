@@ -35,7 +35,7 @@
 
       h2 {
         @include text4;
-        
+
         @include mq(tablet) {
           @include text6;
         }
@@ -73,14 +73,67 @@
         }
       }
     }
+
+    .noContent {
+      transform: translate(-50%, -50%);
+      position: absolute;
+      width: 420px;
+      left: 50%;
+      top: 50%;
+
+      .container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        display: flex;
+
+        .imgWrapper {
+          width: 100%;
+          max-width: 277px;
+          margin-bottom: 10px;
+  
+          img {
+            width: 100%;
+          }
+        }
+  
+        h2 {
+          @include text1;
+        }
+  
+        p {
+          margin-top: 6px;
+          @include text5;
+        }
+      }
+
+      @include mq(tablet) {
+        width: calc(100% - 32px);
+
+        .container {
+          .imgWrapper {
+            max-width: 200px;
+          }
+
+          h2 {
+            @include text3;
+          }
+  
+          p {
+            @include text7;
+          }          
+        }
+      }
+    }
   }
 
   .popUpArea {
     background: rgba(55, 65, 81, 0.3);
     transform: translate(-50%, -50%);
     position: fixed;
-    width: 100vw;
+    z-index: 3;
     height: 100%;
+    width: 100vw;
     left: 50%;
     top: 50%;
 
@@ -96,7 +149,7 @@
         background: $back1;
         border-radius: 8px;
         width: calc(100% - 40px);
-        
+
         transform: translate(-50%, -50%);
         position: absolute;
         left: 50%;
@@ -115,9 +168,8 @@
           h3 {
             @include text4;
             margin-bottom: 2px;
-
           }
-          
+
           p {
             color: $text2;
             @include text7;
@@ -136,5 +188,13 @@
         }
       }
     }
+  }
+
+  .boxArea {
+    transform: translateX(-50%);
+    transition: 0.2s;
+    position: fixed;
+    bottom: 56px;
+    left: 50%;
   }
 }
