@@ -7,7 +7,7 @@ import TrueImage from "../../images/true.svg";
 import FalseImage from "../../images/false.svg";
 import "./style.scss";
 
-const Resolve = (props) => {
+const Playing = (props) => {
   const book = props.book;
   const index = props.index;
   const score = props.score;
@@ -128,4 +128,4 @@ const Resolve = (props) => {
   );
 };
 
-export default Resolve;
+export default Playing;

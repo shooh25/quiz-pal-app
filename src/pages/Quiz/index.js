@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import Result from "../Result";
-import Resolve from "../Playing";
+import Playing from "../Playing";
 import Header from "../../components/Header";
 import Content from "../../components/Content";
 import "./style.scss";
@@ -25,7 +25,7 @@ const Quiz = () => {
               setScore={setScore}
             />
           ) : (
-            <Resolve
+            <Playing
               book={book}
               index={index}
               score={score}
