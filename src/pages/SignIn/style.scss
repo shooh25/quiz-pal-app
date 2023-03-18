@@ -1,0 +1,77 @@
+@import "variables.scss";
+
+.signIn {
+  width: 100%;
+  height: 100%;
+
+  .background {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70%;
+    z-index: 0;
+    position: absolute;
+    background: $main1;
+    border-bottom-right-radius: 1000px 50px;
+    border-bottom-left-radius: 1000px 50px;
+
+  }
+
+  .body {
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    display: flex;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    align-items: center;
+    flex-direction: column;
+
+    .heading {
+      text-align: center;
+
+      h1,
+      h2 {
+        color: $back1;
+        font-family: "M PLUS Rounded 1c", sans-serif;
+        line-height: 120%;
+      }
+
+      h1 {
+        width: 565px;
+        font-size: 8rem;
+      }
+
+      h2 {
+        margin-top: 30px;
+        font-size: 4rem;
+      }
+
+      p {
+        color: $back1;
+        margin-top: 10px;
+        @include text5;
+      }
+    }
+
+    form {
+      width: 100%;
+      padding: 36px;
+      max-width: 500px;
+      margin-top: 52px;
+      border-radius: 8px;
+      background: $back1;
+      text-align: center;
+
+      @include shadow2;
+
+      p {
+        @include text2;
+      }
+
+      .menuArea {
+        margin-top: 20px;
+      }
+    }
+  }
+}
