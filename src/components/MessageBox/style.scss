@@ -1,0 +1,12 @@
+@import "variables.scss";
+
+.messageBox {
+  background: $main3;
+  padding: 14px 24px;
+  @include shadow1;
+
+  p {
+    color: $main1;
+    @include text5;
+  }
+}
