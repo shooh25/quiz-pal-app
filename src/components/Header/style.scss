@@ -1,0 +1,22 @@
+@import "variables.scss";
+
+.header {
+  position: fixed;
+  padding: 12px 50px;
+  background: $back1;
+  border-bottom: 1px solid $border2;
+  z-index: 2;
+  height: 57px;
+  width: 100%;
+  left: 0;
+  top: 0;
+
+  .container {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  @include mq(tablet) {
+    padding: 12px;
+  }
+}
