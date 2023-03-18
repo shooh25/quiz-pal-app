@@ -6,6 +6,7 @@ import { auth, provider } from "../../firebase";
 import "./style.scss";
 
 const SignIn = () => {
+
   const SignInWithGoogle = () => {
     auth.signInWithPopup(provider);
   };
@@ -24,17 +25,17 @@ const SignIn = () => {
             <h2>○×クイズビルダー</h2>
             <p>誰でも簡単に○×クイズを作成し、遊ぶことのできるアプリです。</p>
           </div>
-          <form>
+          <div className="formArea">
             <p>サインイン</p>
             <div className="menuArea">
               <Button
                 sizes="normal"
                 styles="filledButton"
-                child={"Googleアカウントでログインする"}
+                child={"Googleでログインする"}
                 onClick={SignInWithGoogle}
               />
             </div>
-          </form>
+          </div>
         </div>
       </section>
     </>
