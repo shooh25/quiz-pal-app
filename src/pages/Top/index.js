@@ -5,21 +5,20 @@ import { Link } from "react-router-dom";
 import Content from "../../components/Content";
 import Button from "../../components/Button";
 import Header from "../../components/Header";
+import MessageBox from "../../components/MessageBox";
 
 import { db } from "../../firebase";
 import BookIcon from "../../images/book.png";
+import EmptyImage from "../../images/emptyIllustration.png";
 import "./style.scss";
 
 const Top = () => {
   const [books, setBooks] = useState([]);
-  const [bookId, setBookId] = useState();
-  const [popUpBool, setPopUpBool] = useToggle(false); // ポップアップの表示切り替え
+  const [bookId, setBookId] = useState("");
+  const [popUpBool, setPopUpBool] = useToggle(false);
+  const [boxBool, setBoxBool] = useToggle(false);
 
-  const deleteBook = () => {
-    db.collection("booksData").doc(bookId).delete();
-    setBookId(null);
-  };
-
+  // dbからドキュメントを読み込み
   useEffect(() => {
     db.collection("booksData").onSnapshot((snapshot) => {
       setBooks(
@@ -30,6 +29,19 @@ const Top = () => {
       );
     });
   }, []);
+
+  const deleteBook = () => {
+    db.collection("booksData").doc(bookId).delete(); // 削除
+
+    // 初期化
+    setBookId("");
+
+    // ボックスを数秒間表示
+    setBoxBool(true);
+    setTimeout(() => {
+      setBoxBool(false);
+    }, 2000);
+  };
 
   return (
     <>
@@ -86,8 +98,14 @@ const Top = () => {
                 </ul>
               </div>
             ) : (
-              <div>
-                <h2>ワークブックを追加しよう！</h2>
+              <div className="noContent">
+                <div className="container">
+                  <div className="imgWrapper">
+                    <img src={EmptyImage} alt="" />
+                  </div>
+                  <h2>ワークブックを追加しよう！</h2>
+                  <p>右上の「新規追加」からワークブックを作成しましょう。</p>
+                </div>
               </div>
             )}
           </div>
@@ -127,6 +145,16 @@ const Top = () => {
                 </div>
               </div>
             </div>
+          </div>
+
+          <div
+            className="boxArea"
+            style={{
+              visibility: boxBool ? "" : "hidden",
+              opacity: boxBool ? "1" : "0",
+            }}
+          >
+            <MessageBox child="ワークブックを削除しました" />
           </div>
         </div>
       </Content>
