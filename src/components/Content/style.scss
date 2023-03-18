@@ -1,12 +1,14 @@
 @import 'variables.scss';
 
 .contents {
+  position: relative;
   background: $back1;
   border-radius: 8px;
   padding: 24px 28px;
   max-width: 960px;
   margin: 0 auto;
-  min-height: 100%;
+  margin-top: 61px;
+  min-height: calc(100% - 61px);
   @include shadow2;
 
   @include mq(tablet) {
