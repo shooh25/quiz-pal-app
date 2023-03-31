@@ -20,6 +20,7 @@
   .body {
     top: 50%;
     left: 50%;
+    width: calc(100% - 40px);
     z-index: 1;
     display: flex;
     position: absolute;
@@ -32,25 +33,38 @@
 
       h1,
       h2 {
-        color: $back1;
         font-family: "M PLUS Rounded 1c", sans-serif;
         line-height: 120%;
+        color: $back1;
       }
 
       h1 {
-        width: 565px;
-        font-size: 8rem;
+        font-size: 7rem;
+        
+        @include mq(tablet) {
+          font-size: 5rem;
+        }
       }
 
       h2 {
         margin-top: 30px;
         font-size: 4rem;
+
+        @include mq(tablet) {
+          font-size: 3rem;
+          margin-top: 20px;
+        }
       }
 
       p {
         color: $back1;
         margin-top: 10px;
+        width: 100%;
         @include text5;
+
+        @include mq(tablet) {
+          @include text7;
+        }
       }
     }
 
@@ -62,15 +76,27 @@
       border-radius: 8px;
       background: $back1;
       text-align: center;
-
       @include shadow2;
+
+      @include mq(tablet) {
+        margin-top: 30px;
+        padding: 24px;
+      }
 
       p {
         @include text2;
+
+        @include mq(tablet) {
+          @include text3;
+        }
       }
 
       .menuArea {
         margin-top: 20px;
+
+        @include mq(tablet) {
+          margin-top: 10px;
+        }
       }
     }
   }
