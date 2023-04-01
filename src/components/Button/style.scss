@@ -3,6 +3,7 @@
 .button {
   // 共通
   button {
+    z-index: 1;
     @include shadow2;
     color: $back1;
     border: none;
@@ -48,9 +49,25 @@
   }
 
   .outlineButton {
-    background: $back1;
     color: $main1;
-    outline: 2px solid $main1;
-    outline-offset: -2px;
+    background: $back1;
+    border: 2px solid $main1;
+
+    // outlineの場合のみborderが内側に入らないため、サイズ調整
+    &.normal {
+      padding: 8px 24px;
+
+      @include mq(tablet) {
+        padding: 6px 16px;
+      }
+    }
+
+    &.mini {
+      padding: 2px 12px;
+
+      @include mq(tablet) {
+        padding: 4px 12px;
+      }
+    }
   }
 }

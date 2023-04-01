@@ -48,15 +48,16 @@ body {
   background: $back1;
   border-radius: 6px;
   border: none;
-  outline: 1px solid $border1;
+  border: 1px solid $border1;
   padding: 10px;
   width: 100%;
   color: $text1;
   @include text5;
 
   &:focus {
+    padding: 9px;
     outline: none;
-    outline: 2px solid $main1;
+    border: 2px solid $main1;
   }
 
   @include mq(tablet) {
@@ -74,4 +75,8 @@ h4,
 span {
   text-decoration: none;
   color: $text1;
+}
+
+button {
+  margin: 0;
 }
