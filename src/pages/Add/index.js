@@ -2,21 +2,24 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useToggle } from "react-use";
+import { useLocation } from "react-router-dom";
 import Content from "../../components/Content";
 import Button from "../../components/Button";
 import Header from "../../components/Header";
 import MessageBox from "../../components/MessageBox";
-import { db } from "../../firebase";
 
+import { db } from "../../firebase";
+import { arrayUnion } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 import "./style.scss";
 
 const Add = () => {
+  const userId = useLocation().state // ユーザー情報
   const answers = ["◯", "✕"];
   const [answer, setAnswer] = useState("◯");
   const [boxBool, setBoxBool] = useToggle(false);
 
-  // ワークブック
+  // 作成したワークブック
   const [newBook, setNewBook] = useState({
     id: uuidv4(),
     title: "",
@@ -68,7 +71,10 @@ const Add = () => {
 
   // ワークブックを保存
   const saveBook = () => {
-    db.collection("booksData").add(newBook);
+    const userDoc = db.collection("users").doc(userId);
+    userDoc.update({
+      booksData: arrayUnion(newBook)
+    })
   };
 
   // 問題を作成

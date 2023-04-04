@@ -7,34 +7,50 @@ import Button from "../../components/Button";
 import Header from "../../components/Header";
 import MessageBox from "../../components/MessageBox";
 
+import { auth } from "../../firebase";
 import { db } from "../../firebase";
 import BookIcon from "../../images/book.png";
 import EmptyImage from "../../images/emptyIllustration.png";
 import "./style.scss";
 
 const Top = () => {
+  const [userId, setUserId] = useState(""); // ユーザー情報
   const [books, setBooks] = useState([]);
-  const [bookId, setBookId] = useState("");
+  const [bookIndex, setBookIndex] = useState(null);
   const [popUpBool, setPopUpBool] = useToggle(false);
   const [boxBool, setBoxBool] = useToggle(false);
 
   // dbからドキュメントを読み込み
   useEffect(() => {
-    db.collection("booksData").onSnapshot((snapshot) => {
-      setBooks(
-        snapshot.docs.map((doc) => ({
-          docId: doc.id,
-          docData: doc.data(),
-        }))
-      );
+    auth.onAuthStateChanged((user) => {
+      setUserId(user.uid);
+      const userDoc = db.collection("users").doc(user.uid);
+
+      userDoc.get().then((doc) => {
+        if (!doc.exists) {
+          userDoc.set({
+            booksData: [],
+          });
+        }
+        userDoc.onSnapshot((snapshot) => {
+          setBooks(snapshot.data().booksData);
+        });
+      });
     });
   }, []);
 
   const deleteBook = () => {
-    db.collection("booksData").doc(bookId).delete(); // 削除
+    const userDoc = db.collection("users").doc(userId);
+    userDoc.get().then((doc) => {
+      const revisedArray = doc.data().booksData;
+      revisedArray.splice(bookIndex, 1);
+      userDoc.update({
+        booksData: revisedArray,
+      });
+    });
 
     // 初期化
-    setBookId("");
+    setBookIndex(null);
 
     // ボックスを数秒間表示
     setBoxBool(true);
@@ -50,7 +66,7 @@ const Top = () => {
         <div className="top">
           <div className="heading">
             <h1>自分のワークブック</h1>
-            <Link to={"/add"}>
+            <Link to={"/add"} state={userId}>
               <Button sizes="normal" styles="filledButton" child={"新規作成"} />
             </Link>
           </div>
@@ -59,12 +75,12 @@ const Top = () => {
             {books.length ? (
               <div>
                 <ul>
-                  {books.map((book) => {
+                  {books.map((book, i) => {
                     return (
-                      <li key={book.docId}>
+                      <li key={i}>
                         <div className="left">
                           <img src={BookIcon} alt="" />
-                          <h2>{book.docData.title}</h2>
+                          <h2>{book.title}</h2>
                         </div>
 
                         <div className="right">
@@ -87,7 +103,7 @@ const Top = () => {
                               child={"削除"}
                               onClick={() => {
                                 setPopUpBool(true);
-                                setBookId(book.docId);
+                                setBookIndex(i);
                               }}
                             />
                           </div>
@@ -128,6 +144,7 @@ const Top = () => {
                       child={"キャンセル"}
                       onClick={() => {
                         setPopUpBool(false);
+                        setBookIndex(null);
                       }}
                       style={{ visibility: popUpBool ? "visible" : "hidden" }}
                     />

@@ -8,7 +8,7 @@ import Content from "../../components/Content";
 import "./style.scss";
 
 const Quiz = () => {
-  const book = useLocation().state.docData;
+  const book = useLocation().state; // 問題集
   const [index, setIndex] = useState(0);
   const [finish, setFinish] = useState(false); // プレイ画面と結果画面の切り替え
   const [score, setScore] = useState(0); // 正答数
