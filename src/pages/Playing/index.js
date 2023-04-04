@@ -17,7 +17,7 @@ const Playing = (props) => {
 
   const [answer, setAnswer] = useState(null); // ユーザーの回答
   const [showResult, setShowResult] = useToggle(false); // 各問題の正答結果画面を表示
-  const [resultSentence, setResultSentence] = useToggle(false); // 正解か不正解かで表示を分岐
+  const [resultSentence, setResultSentence] = useToggle(false); // 正解か不正解かで表示を変更
 
   // 答えを判定してメッセージを表示
   const judgeAnswer = () => {

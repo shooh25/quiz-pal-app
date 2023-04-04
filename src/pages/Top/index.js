@@ -15,21 +15,22 @@ import "./style.scss";
 
 const Top = () => {
   const [userId, setUserId] = useState(""); // ユーザー情報
-  const [books, setBooks] = useState([]);
-  const [bookIndex, setBookIndex] = useState(null);
-  const [popUpBool, setPopUpBool] = useToggle(false);
-  const [boxBool, setBoxBool] = useToggle(false);
+
+  const [books, setBooks] = useState([]); // 保存されているワークブックたち
+  const [bookIndex, setBookIndex] = useState(null); // 削除対象を指定するindex
+  const [popUpBool, setPopUpBool] = useToggle(false); // ポップアップを表示するか否か
+  const [boxBool, setBoxBool] = useToggle(false); // ボックスを表示するか否か
 
   // dbからドキュメントを読み込み
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       setUserId(user.uid);
-      const userDoc = db.collection("users").doc(user.uid);
+      const userDoc = db.collection("users").doc(user.uid); // ユーザごとのドキュメント取得
 
       userDoc.get().then((doc) => {
         if (!doc.exists) {
           userDoc.set({
-            booksData: [],
+            booksData: [], // 初ログインの場合はデータ作成
           });
         }
         userDoc.onSnapshot((snapshot) => {
@@ -39,13 +40,14 @@ const Top = () => {
     });
   }, []);
 
+  // ワークブック削除
   const deleteBook = () => {
     const userDoc = db.collection("users").doc(userId);
     userDoc.get().then((doc) => {
-      const revisedArray = doc.data().booksData;
+      const revisedArray = doc.data().booksData; // 対象の要素を削除した配列を作成
       revisedArray.splice(bookIndex, 1);
       userDoc.update({
-        booksData: revisedArray,
+        booksData: revisedArray, // 配列の上書き
       });
     });
 
